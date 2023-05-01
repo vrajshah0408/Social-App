@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
-import { Jwt } from "jsonwebtoken";
+import pkg from 'jsonwebtoken';
+const { jwt } = pkg;
 import User from "../models/User.js"
 
 /* Registered User */
