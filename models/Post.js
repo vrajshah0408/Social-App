@@ -22,6 +22,14 @@ const postSchema = mongoose.Schema(
         likes:{
             type: Map,
             of: Boolean,
+        },
+        comments:{
+            types:Array,
+            default: []
         }
-    }
-)
+    },
+    { timestamps: true}
+);
+
+const Post = mongoose.model("Post", postSchema);
+export default Post;
