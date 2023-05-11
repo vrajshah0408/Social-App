@@ -19,6 +19,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const { palette } = useTheme();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  console.log("token", token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
@@ -32,8 +33,9 @@ const UserWidget = ({ userId, picturePath }) => {
       const data = await response.json();
       setUser(data);
     };
-    getUser();
-  }, [userId, token]);
+
+    getUser(); //
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) {
     return null;
@@ -46,6 +48,7 @@ const UserWidget = ({ userId, picturePath }) => {
     occupation,
     viewedProfile,
     impressions,
+    // friends,
   } = user;
 
   return (
@@ -73,7 +76,7 @@ const UserWidget = ({ userId, picturePath }) => {
               {firstName} {lastName}
             </Typography>
             <Typography color={medium}>
-              {user.friends && user.friends.length} friends
+              {user?.friends?.length ?? 0} friends
             </Typography>
           </Box>
         </FlexBetween>
@@ -81,6 +84,8 @@ const UserWidget = ({ userId, picturePath }) => {
       </FlexBetween>
 
       <Divider />
+
+      {/* Rest of the component */}
 
       {/* SECOND ROW */}
       <Box p="1rem 0">
