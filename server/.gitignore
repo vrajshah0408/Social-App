@@ -2,3 +2,4 @@ SERVER/README.md
 SERVER/.env
 .env
 /node_modules
+node_modules
