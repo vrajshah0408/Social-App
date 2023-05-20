@@ -111,9 +111,7 @@ const UserWidget = ({ userId, picturePath }) => {
         </FlexBetween>
         <FlexBetween>
           <Typography color={medium}>Impressions</Typography>
-          <Typography color={main} fontWeight="500">
-            impressions
-          </Typography>
+          <Typography color={main} fontWeight="500"></Typography>
           <Typography color={main} fontWeight="500">
             {impressions}
           </Typography>
