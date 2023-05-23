@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -20,6 +21,7 @@ import { users, posts } from "./data/index.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -47,15 +49,15 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 const PORT = process.env.PORT || 3000;
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     // User.insertMany(users);
     // Post.insertMany(posts);
   })
+  
   .catch((error) => console.log(`${error} did not connect`));
