@@ -79,7 +79,7 @@ const Form = () => {
 
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch(
-      "https://social-app-navy.vercel.app/auth/login",
+      "https://social-app-mern-stack.onrender.com/auth/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
