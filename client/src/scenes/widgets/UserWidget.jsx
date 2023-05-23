@@ -19,7 +19,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const { palette } = useTheme();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
-  console.log("token", token);
+
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
@@ -27,12 +27,13 @@ const UserWidget = ({ userId, picturePath }) => {
   useEffect(() => {
     const getUser = async () => {
       const response = await fetch(
-        `https://social-app-mern-stack.onrender.com/${userId}`,
+        process.env.REACT_APP_BASE_URL + `/users/${userId}`,
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      console.log(response);
       const data = await response.json();
       setUser(data);
     };
