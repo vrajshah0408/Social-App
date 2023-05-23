@@ -10,7 +10,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`https://social-app-mern-stack.onrender.com/assets/${image}`}
+        src={`https://social-app-navy.vercel.app/assets/${image}`}
       />
     </Box>
   );

@@ -18,7 +18,7 @@ const ProfilePage = () => {
 
   const getUser = async () => {
     const response = await fetch(
-      `https://social-app-mern-stack.onrender.com/${userId}`,
+      `https://social-app-navy.vercel.app/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
