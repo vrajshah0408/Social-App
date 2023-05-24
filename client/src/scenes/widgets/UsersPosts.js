@@ -2,34 +2,35 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
+import { setUsersPosts } from "state";
 import PostWidget from "./PostWidget";
+import { useParams } from "react-router-dom";
 
-const PostsWidget = ({ isProfile = false }) => {
+const UsersPosts = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
+  const {userId} = useParams();
+  const usersPosts = useSelector((state) => state.usersPosts);
   const token = useSelector((state) => state.token);
 
-  const getPosts = async () => {
-    const response = await fetch(process.env.REACT_APP_BASE_URL + `/posts`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  const getUserPosts = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_BASE_URL + `/posts/${userId}/posts`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    dispatch(setUsersPosts({ usersPosts: data }));
   };
 
   useEffect(() => {
-    if (isProfile) {
-      getPosts();
-    } else {
-      getPosts();
-    }
+      getUserPosts();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      {posts.map(
+      {usersPosts.map(
             ({
               _id,
               userId,
@@ -60,4 +61,4 @@ const PostsWidget = ({ isProfile = false }) => {
   );
 };
 
-export default PostsWidget;
+export default UsersPosts;

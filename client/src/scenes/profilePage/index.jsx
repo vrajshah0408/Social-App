@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 import Navbar from "scenes/navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostsWidget from "scenes/widgets/PostsWidget";
 import UserWidget from "scenes/widgets/UserWidget";
+import UsersPosts from "scenes/widgets/UsersPosts";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -18,7 +18,7 @@ const ProfilePage = () => {
 
   const getUser = async () => {
     const response = await fetch(
-      process.env.REACT_APP_BASE_URL + `/${userId}`,
+      process.env.REACT_APP_BASE_URL + `/users/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -55,7 +55,7 @@ const ProfilePage = () => {
         >
           <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
-          <PostsWidget userId={userId} isProfile />
+          <UsersPosts userId={userId} isProfile />
         </Box>
       </Box>
     </Box>
